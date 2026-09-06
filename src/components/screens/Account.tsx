@@ -5,14 +5,19 @@ import {
   openExternal,
   savePreferences,
 } from "../../lib/api";
+import {
+  isDesktopPushEnabled,
+  setDesktopPushEnabled,
+} from "../../lib/notifications";
 import type { UserPreferencesDto } from "../../lib/types";
 
 interface Props {
   onPrefs: (prefs: UserPreferencesDto) => void;
   onSignedOut: () => void;
+  canPush?: boolean;
 }
 
-export function AccountScreen({ onPrefs, onSignedOut }: Props) {
+export function AccountScreen({ onPrefs, onSignedOut, canPush = false }: Props) {
   const [email, setEmail] = useState<string>("");
   const [tier, setTier] = useState("free");
   const [prefs, setPrefs] = useState<UserPreferencesDto>({
@@ -22,6 +27,7 @@ export function AccountScreen({ onPrefs, onSignedOut }: Props) {
     showWeather: true,
     weatherCityId: "",
   });
+  const [desktopPush, setDesktopPush] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [msg, setMsg] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -41,6 +47,7 @@ export function AccountScreen({ onPrefs, onSignedOut }: Props) {
         showWeather: p.showWeather ?? true,
         weatherCityId: p.weatherCityId ?? "",
       });
+      setDesktopPush(isDesktopPushEnabled());
       onPrefs(p);
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
@@ -83,6 +90,45 @@ export function AccountScreen({ onPrefs, onSignedOut }: Props) {
             Sign out
           </button>
         </div>
+      </div>
+
+      <div class="card stack">
+        <div class="card-title">Desktop notifications</div>
+        {canPush ? (
+          <>
+            <p class="card-sub">
+              Pro: show OS notifications when new freeze/flood alert events arrive
+              (polls while the app is open). Also enable the Push channel under Alerts
+              on the web if you want phone/browser push too.
+            </p>
+            <label class="check">
+              <input
+                type="checkbox"
+                checked={desktopPush}
+                onChange={(e) => {
+                  const on = (e.target as HTMLInputElement).checked;
+                  setDesktopPush(on);
+                  setDesktopPushEnabled(on);
+                  setMsg(on ? "Desktop notifications enabled" : "Desktop notifications off");
+                }}
+              />
+              Notify on new alert events
+            </label>
+          </>
+        ) : (
+          <>
+            <p class="card-sub">
+              OS push-style notifications are a Pro feature. Upgrade to get freeze and
+              flood alerts on this desktop while the app is running.
+            </p>
+            <button
+              class="btn btn-primary"
+              onClick={() => void openExternal("https://thermaltrace.dev/dashboard/plans")}
+            >
+              View plans
+            </button>
+          </>
+        )}
       </div>
 
       <div class="card stack">

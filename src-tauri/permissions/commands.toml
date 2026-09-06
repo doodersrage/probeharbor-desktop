@@ -27,3 +27,8 @@ commands.allow = ["api_request"]
 identifier = "allow-api-form-post"
 description = "Authenticated form POST to thermaltrace.dev dashboard APIs"
 commands.allow = ["api_form_post"]
+
+[[permission]]
+identifier = "allow-set-kiosk-mode"
+description = "Toggle fullscreen kiosk / shop mode"
+commands.allow = ["set_kiosk_mode"]

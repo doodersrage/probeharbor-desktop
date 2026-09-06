@@ -38,40 +38,67 @@ interface Props {
   onRoute: (r: Route) => void;
   email?: string;
   plan?: string;
+  kiosk?: boolean;
+  onToggleKiosk?: () => void;
   children: ComponentChildren;
 }
 
-export function Shell({ route, onRoute, email, plan, children }: Props) {
+export function Shell({
+  route,
+  onRoute,
+  email,
+  plan,
+  kiosk = false,
+  onToggleKiosk,
+  children,
+}: Props) {
   return (
-    <div class="shell">
-      <aside class="sidebar">
-        <div class="brand">
-          <span class="brand-thermal">Thermal</span>
-          <span class="brand-trace">Trace</span>
-        </div>
-        {NAV.map((group) => (
-          <div key={group.section}>
-            <div class="nav-section">{group.section}</div>
-            {group.items.map((item) => (
-              <button
-                key={item.id}
-                class={`nav-btn ${route === item.id ? "active" : ""}`}
-                onClick={() => onRoute(item.id)}
-              >
-                {item.label}
-              </button>
-            ))}
+    <div class={`shell ${kiosk ? "shell-kiosk" : ""}`}>
+      {!kiosk && (
+        <aside class="sidebar">
+          <div class="brand">
+            <span class="brand-thermal">Thermal</span>
+            <span class="brand-trace">Trace</span>
           </div>
-        ))}
-        <div class="sidebar-foot">Desktop companion · not a sensor</div>
-      </aside>
+          {NAV.map((group) => (
+            <div key={group.section}>
+              <div class="nav-section">{group.section}</div>
+              {group.items.map((item) => (
+                <button
+                  key={item.id}
+                  class={`nav-btn ${route === item.id ? "active" : ""}`}
+                  onClick={() => onRoute(item.id)}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          ))}
+          <div class="sidebar-foot">Desktop companion · not a sensor</div>
+        </aside>
+      )}
       <div class="main">
         <header class="topbar">
           <div>
-            <h1>{TITLES[route]}</h1>
+            <h1>{kiosk ? "ThermalTrace · Kiosk" : TITLES[route]}</h1>
             {email && <p class="topbar-meta">{email}</p>}
           </div>
-          {plan && <span class="badge">{plan}</span>}
+          <div class="row">
+            {plan && <span class="badge">{plan}</span>}
+            {onToggleKiosk && (
+              <button
+                class="btn btn-ghost"
+                onClick={onToggleKiosk}
+                title={
+                  kiosk
+                    ? "Exit kiosk / shop mode"
+                    : "Kiosk / shop mode — fullscreen live readings"
+                }
+              >
+                {kiosk ? "Exit kiosk" : "Kiosk mode"}
+              </button>
+            )}
+          </div>
         </header>
         <div class="content">{children}</div>
       </div>

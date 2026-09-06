@@ -326,6 +326,13 @@ async fn send_authed(
         .build()
         .map_err(|e| e.to_string())?;
 
+    // Many dashboard routes still resolve auth from cookies (Android-style).
+    // Send both Bearer companion headers and session cookies so either path works.
+    let cookie = format!(
+        "sb-access-token={}; sb-refresh-token={}; sb-mfa-required=0",
+        tokens.access_token, tokens.refresh_token
+    );
+
     let mut req = client
         .request(method, format!("{API_BASE}{path}"))
         .header("Accept", "application/json")
@@ -334,7 +341,8 @@ async fn send_authed(
             format!("Bearer {}", tokens.access_token),
         )
         .header("X-SB-Refresh-Token", tokens.refresh_token.as_str())
-        .header("X-SB-MFA-Required", "0");
+        .header("X-SB-MFA-Required", "0")
+        .header("Cookie", cookie);
 
     if let Some(payload) = json_body {
         req = req

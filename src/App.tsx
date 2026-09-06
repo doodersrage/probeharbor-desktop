@@ -1,6 +1,8 @@
 import { useEffect, useState } from "preact/hooks";
 import { listen } from "@tauri-apps/api/event";
 import { fetchExport, hasSession } from "./lib/api";
+import { isKioskStored, setKioskMode } from "./lib/kiosk";
+import { startAlertNotificationPoller } from "./lib/notifications";
 import type { Route, UserPreferencesDto } from "./lib/types";
 import { ConnectScreen } from "./components/Connect";
 import { Shell } from "./components/Shell";
@@ -22,6 +24,8 @@ export function App() {
   const [prefs, setPrefs] = useState<UserPreferencesDto>({ useCelsius: false });
   const [canShare, setCanShare] = useState(false);
   const [canClaims, setCanClaims] = useState(false);
+  const [canPush, setCanPush] = useState(false);
+  const [kiosk, setKiosk] = useState(false);
 
   async function refreshSessionMeta() {
     try {
@@ -31,6 +35,7 @@ export function App() {
       setPrefs(exp.preferences ?? {});
       setCanShare(!!exp.entitlements?.canCreateShareLinks);
       setCanClaims(!!exp.entitlements?.canUseClaimsPack);
+      setCanPush(!!exp.entitlements?.canUsePush);
     } catch {
       // keep prior meta
     }
@@ -41,6 +46,16 @@ export function App() {
       const ok = await hasSession();
       setConnected(ok);
       if (ok) await refreshSessionMeta();
+      const wantKiosk = isKioskStored();
+      if (wantKiosk && ok) {
+        setKiosk(true);
+        setRoute("home");
+        try {
+          await setKioskMode(true);
+        } catch {
+          /* window API may fail in browser preview */
+        }
+      }
       setBooting(false);
     })();
 
@@ -64,6 +79,22 @@ export function App() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!connected) return;
+    return startAlertNotificationPoller(() => connected && canPush);
+  }, [connected, canPush]);
+
+  async function toggleKiosk() {
+    const next = !kiosk;
+    setKiosk(next);
+    if (next) setRoute("home");
+    try {
+      await setKioskMode(next);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   if (booting) {
     return <div class="loading">Starting ThermalTrace…</div>;
   }
@@ -80,22 +111,32 @@ export function App() {
   }
 
   return (
-    <Shell route={route} onRoute={setRoute} email={email} plan={plan}>
-      {route === "home" && <HomeScreen useCelsius={!!prefs.useCelsius} />}
-      {route === "history" && (
+    <Shell
+      route={route}
+      onRoute={setRoute}
+      email={email}
+      plan={plan}
+      kiosk={kiosk}
+      onToggleKiosk={() => void toggleKiosk()}
+    >
+      {(route === "home" || kiosk) && (
+        <HomeScreen useCelsius={!!prefs.useCelsius} />
+      )}
+      {!kiosk && route === "history" && (
         <HistoryScreen useCelsius={!!prefs.useCelsius} canClaims={canClaims} />
       )}
-      {route === "alerts" && <AlertsScreen />}
-      {route === "devices" && <DevicesScreen />}
-      {route === "household" && <HouseholdScreen />}
-      {route === "share" && <ShareScreen canShare={canShare} />}
-      {route === "account" && (
+      {!kiosk && route === "alerts" && <AlertsScreen />}
+      {!kiosk && route === "devices" && <DevicesScreen />}
+      {!kiosk && route === "household" && <HouseholdScreen />}
+      {!kiosk && route === "share" && <ShareScreen canShare={canShare} />}
+      {!kiosk && route === "account" && (
         <AccountScreen
           onPrefs={(p) => setPrefs(p)}
           onSignedOut={() => setConnected(false)}
+          canPush={canPush}
         />
       )}
-      {route === "portfolio" && (
+      {!kiosk && route === "portfolio" && (
         <PortfolioScreen
           useCelsius={!!prefs.useCelsius}
           onSwitched={() => {

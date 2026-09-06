@@ -50,13 +50,20 @@ On NVIDIA + Wayland, WebKit can abort with `Could not create GBM EGL display`. T
 3. The browser returns to a localhost handoff the app is listening on
 4. Dashboard screens load against your account
 
-## Out of scope (v1)
+## Out of scope (for now)
 
-- OS push notifications (Android uses FCM)
 - Admin / ops screens
 - In-app billing (opens thermaltrace.dev)
-- Kiosk mode
 - Claim-puck USB (stays in Bay Buddy)
+- Background daemon when the app is fully quit (notifications poll while open)
+
+## Notifications (Pro)
+
+While the app is open, Desktop polls alert events and raises native OS notifications for new freeze/flood (and other) alerts. Toggle under Account. Enable Push under Alerts on the web for phone/browser channels too.
+
+## Kiosk mode
+
+Use **Kiosk mode** in the top bar for a fullscreen shop display: hides the sidebar, keeps the window on top, and focuses live Home readings.
 
 ## Release
 

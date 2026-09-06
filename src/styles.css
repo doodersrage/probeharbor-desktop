@@ -59,6 +59,10 @@ a {
   min-height: 0;
 }
 
+.shell-kiosk {
+  grid-template-columns: 1fr;
+}
+
 .sidebar {
   display: flex;
   flex-direction: column;
