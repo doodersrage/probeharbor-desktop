@@ -7,11 +7,13 @@ import {
 } from "../../lib/api";
 import { buildHeatingInsights, formatTemp } from "../../lib/insights";
 import type {
+  ChartPointDto,
   HeatingInsight,
   HomeInsightsResponse,
   HomeReadingsResponse,
   LiveSensor,
 } from "../../lib/types";
+import { HistoryChart } from "../HistoryChart";
 
 interface Props {
   useCelsius: boolean;
@@ -28,12 +30,24 @@ function sensorValue(s: LiveSensor, useCelsius: boolean): string {
   return "—";
 }
 
+function houseLegend(source?: string | null): string {
+  if (!source) return "House";
+  const s = source.toLowerCase();
+  if (s.includes("nest")) return "Nest";
+  if (s.includes("ecobee")) return "Ecobee";
+  if (s.includes("reference") || s.includes("indoor")) return "Indoor reference";
+  return source;
+}
+
 export function HomeScreen({ useCelsius }: Props) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [readings, setReadings] = useState<HomeReadingsResponse | null>(null);
   const [insights, setInsights] = useState<HomeInsightsResponse | null>(null);
   const [heating, setHeating] = useState<HeatingInsight[]>([]);
+  const [chartPoints, setChartPoints] = useState<ChartPointDto[]>([]);
+  const [housePoints, setHousePoints] = useState<ChartPointDto[]>([]);
+  const [houseSource, setHouseSource] = useState<string | null>(null);
   const [space, setSpace] = useState<string | null>(null);
 
   async function refresh(selected = space) {
@@ -42,11 +56,14 @@ export function HomeScreen({ useCelsius }: Props) {
       const [r, i, hist] = await Promise.all([
         fetchHomeReadings(selected),
         fetchHomeInsights(),
-        fetchHistory(2).catch(() => null),
+        fetchHistory(7).catch(() => null),
       ]);
       setReadings(r);
       setInsights(i);
       const points = hist?.chart?.points ?? [];
+      setChartPoints(points);
+      setHousePoints(hist?.house_overlay?.points ?? []);
+      setHouseSource(hist?.house_overlay?.source ?? null);
       setHeating(
         buildHeatingInsights(
           points,
@@ -131,6 +148,18 @@ export function HomeScreen({ useCelsius }: Props) {
             Updated {readings?.updatedAt ?? "—"}
           </p>
         </div>
+      </div>
+
+      <div class="card">
+        <HistoryChart
+          points={chartPoints}
+          housePoints={housePoints}
+          houseLegend={houseLegend(houseSource)}
+          title="Probe curves (7 days)"
+          freezeThresholdF={insights?.freeze_threshold_f ?? 34}
+          showHumidity
+          compact
+        />
       </div>
 
       {heating.length > 0 && (

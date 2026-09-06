@@ -423,6 +423,75 @@ a {
   display: block;
 }
 
+.history-chart-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.history-chart-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.history-chart-legend {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.history-chart-canvas {
+  width: 100%;
+  height: 280px;
+  display: block;
+  border-radius: 0.5rem;
+}
+
+.history-chart-canvas.compact {
+  height: 240px;
+}
+
+.chart-threshold-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: flex-end;
+  margin-top: 0.5rem;
+}
+
+.chart-threshold-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  min-width: 140px;
+}
+
+.chart-threshold-field input[type="number"] {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 0.5rem;
+  padding: 0.45rem 0.6rem;
+  color: var(--color-text);
+}
+
+.chart-threshold-check {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: auto;
+  padding-bottom: 0.45rem;
+}
+
+.chart-threshold-note {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  align-self: center;
+}
+
 .insight-warn {
   border-left: 3px solid var(--color-warning);
 }

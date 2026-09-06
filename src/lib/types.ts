@@ -82,9 +82,15 @@ export interface ChartPointDto {
   probeLabel?: string;
 }
 
+export interface HistoryHouseOverlayDto {
+  source?: string | null;
+  points?: ChartPointDto[];
+}
+
 export interface HistoryResponse {
   days?: number;
   chart?: { points?: ChartPointDto[]; error?: string | null } | null;
+  house_overlay?: HistoryHouseOverlayDto | null;
   readings?: {
     readings?: Array<{
       tempc?: number;

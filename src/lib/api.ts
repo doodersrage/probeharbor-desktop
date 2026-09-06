@@ -124,7 +124,7 @@ export async function fetchHistory(
   const probeQ = probe ? `&probe=${encodeURIComponent(probe)}` : "";
   return apiJson(
     "GET",
-    `/api/user/history?days=${days}&include=chart,readings,filters&page=1&page_size=20${probeQ}`,
+    `/api/user/history?days=${days}&include=chart,readings,filters,house_overlay&page=1&page_size=20${probeQ}`,
   );
 }
 
