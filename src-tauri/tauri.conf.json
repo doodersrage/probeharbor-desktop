@@ -1,0 +1,59 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "ThermalTrace",
+  "version": "0.1.0",
+  "identifier": "com.thermaltrace.desktop",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "label": "main",
+        "title": "ThermalTrace",
+        "width": 1200,
+        "height": 800,
+        "resizable": true,
+        "minWidth": 960,
+        "minHeight": 640
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://thermaltrace.dev"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["appimage", "deb", "rpm", "nsis", "msi", "dmg", "app"],
+    "category": "Lifestyle",
+    "shortDescription": "ThermalTrace desktop companion dashboard",
+    "longDescription": "ThermalTrace Desktop is a native Windows, macOS, and Linux companion for your ThermalTrace account. Live readings, history, alerts, devices, and household tools — the desktop is not a sensor.",
+    "publisher": "ThermalTrace",
+    "homepage": "https://thermaltrace.dev",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "linux": {
+      "appimage": {
+        "bundleMediaFramework": false
+      }
+    },
+    "macOS": {
+      "minimumSystemVersion": "10.15"
+    },
+    "windows": {
+      "nsis": {
+        "installMode": "currentUser"
+      }
+    }
+  },
+  "plugins": {}
+}

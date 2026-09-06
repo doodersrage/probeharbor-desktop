@@ -1,0 +1,1 @@
+{"default":{"identifier":"default","description":"Capability for the main window","local":true,"windows":["main"],"permissions":["core:default","opener:default","allow-open-external","allow-start-companion-login","allow-disconnect-companion","allow-has-companion-session","allow-api-request","allow-api-form-post"]}}
