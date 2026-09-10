@@ -6,6 +6,8 @@ The desktop **does not** collect sensor data — it signs in with your ThermalTr
 
 **Not Bay Buddy.** [Bay Buddy](https://github.com/doodersrage/thermaltrace-bay-buddy) is a glanceable freeze/flood mood companion for one space. This app is the full dashboard client: Home, History, Alerts, Devices, Household, Share, Account, and Portfolio.
 
+On the web, live probe cards live at [`/dashboard/live`](https://thermaltrace.dev/dashboard/live); Overview Status/Insights stay at [`/dashboard`](https://thermaltrace.dev/dashboard). Desktop **Home** maps to Live-style readings (same HTTPS APIs as Android); it does not reimplement web Overview Insights.
+
 ## Stack
 
 - [Tauri 2](https://tauri.app/) + Vite + Preact + TypeScript
