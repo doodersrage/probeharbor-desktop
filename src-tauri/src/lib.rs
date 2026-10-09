@@ -43,5 +43,5 @@ pub fn run() {
             set_kiosk_mode,
         ])
         .run(tauri::generate_context!())
-        .expect("error while running ThermalTrace Desktop");
+        .expect("error while running ProbeHarbor Desktop");
 }

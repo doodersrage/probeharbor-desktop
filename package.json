@@ -2,7 +2,7 @@
   "name": "thermaltrace-desktop",
   "private": true,
   "version": "0.1.2",
-  "description": "ThermalTrace Desktop — native Windows, macOS, and Linux companion dashboard",
+  "description": "ProbeHarbor Desktop — native Windows, macOS, and Linux companion dashboard",
   "type": "module",
   "scripts": {
     "dev": "vite",

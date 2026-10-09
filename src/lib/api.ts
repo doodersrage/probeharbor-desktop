@@ -39,7 +39,7 @@ export async function apiJson<T>(
   if (res.status === 401) {
     throw new Error(
       res.body.includes("MFA")
-        ? "MFA required — finish MFA on thermaltrace.dev, then connect again"
+        ? "MFA required — finish MFA on probeharbor.dev, then connect again"
         : "Session expired — connect again",
     );
   }

@@ -57,8 +57,8 @@ export function Shell({
       {!kiosk && (
         <aside class="sidebar">
           <div class="brand">
-            <span class="brand-thermal">Thermal</span>
-            <span class="brand-trace">Trace</span>
+            <span class="brand-thermal">Probe</span>
+            <span class="brand-trace">Harbor</span>
           </div>
           {NAV.map((group) => (
             <div key={group.section}>
@@ -80,7 +80,7 @@ export function Shell({
       <div class="main">
         <header class="topbar">
           <div>
-            <h1>{kiosk ? "ThermalTrace · Kiosk" : TITLES[route]}</h1>
+            <h1>{kiosk ? "ProbeHarbor · Kiosk" : TITLES[route]}</h1>
             {email && <p class="topbar-meta">{email}</p>}
           </div>
           <div class="row">

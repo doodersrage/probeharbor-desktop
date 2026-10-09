@@ -47,7 +47,7 @@ async function ensurePermission(): Promise<boolean> {
 }
 
 function notifyEvent(ev: AlertEventDto) {
-  const title = ev.title?.trim() || "ThermalTrace alert";
+  const title = ev.title?.trim() || "ProbeHarbor alert";
   const body = ev.body?.trim() || ev.kind || "New alert from your probes";
   sendNotification({ title, body });
 }

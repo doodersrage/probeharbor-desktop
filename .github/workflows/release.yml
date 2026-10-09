@@ -56,15 +56,15 @@ jobs:
           APPIMAGE_EXTRACT_AND_RUN: "1"
         with:
           tagName: ${{ github.ref_name }}
-          releaseName: "ThermalTrace Desktop ${{ github.ref_name }}"
+          releaseName: "ProbeHarbor Desktop ${{ github.ref_name }}"
           releaseBody: |
-            Native Windows, macOS, and Linux companion dashboard for ThermalTrace.
+            Native Windows, macOS, and Linux companion dashboard for ProbeHarbor.
 
             - **Linux:** AppImage, deb, rpm
             - **Windows:** MSI / NSIS
             - **macOS:** DMG (Intel + Apple Silicon)
 
-            Sign in opens thermaltrace.dev; the desktop is not a sensor.
+            Sign in opens probeharbor.dev; the desktop is not a sensor.
             Bay Buddy remains the mood glance companion.
           releaseDraft: false
           prerelease: false

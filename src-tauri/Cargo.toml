@@ -1,8 +1,8 @@
 [package]
 name = "thermaltrace-desktop"
 version = "0.1.2"
-description = "ThermalTrace Desktop — native companion dashboard"
-authors = ["ThermalTrace"]
+description = "ProbeHarbor Desktop — native companion dashboard"
+authors = ["ProbeHarbor"]
 edition = "2021"
 license = "MIT"
 

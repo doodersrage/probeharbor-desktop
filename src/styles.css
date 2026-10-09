@@ -1,16 +1,16 @@
 :root {
-  --color-bg: #090b0f;
-  --color-bg-elevated: #0f1319;
-  --color-surface: #151b24;
-  --color-surface-raised: #1a2230;
+  --color-bg: #07111a;
+  --color-bg-elevated: #0a1823;
+  --color-surface: #0f1f2c;
+  --color-surface-raised: #142a3a;
   --color-border: rgb(255 255 255 / 0.08);
   --color-border-strong: rgb(255 255 255 / 0.14);
-  --color-text: #f8fafc;
-  --color-text-secondary: #e2e8f0;
-  --color-text-muted: #94a3b8;
-  --color-accent: #e85500;
-  --color-accent-soft: rgb(232 85 0 / 0.14);
-  --color-brand-thermal: #c5cbd3;
+  --color-text: #f3f8fb;
+  --color-text-secondary: #e3edf3;
+  --color-text-muted: #8aa0af;
+  --color-accent: #22b8d4;
+  --color-accent-soft: rgb(34 184 212 / 0.14);
+  --color-brand-thermal: #e6f4fb;
   --color-success: #22c55e;
   --color-danger: #f87171;
   --color-warning: #fcd34d;
@@ -246,11 +246,12 @@ a {
 
 .btn-primary {
   background: var(--color-accent);
-  color: #fff;
+  /* Dark ink on teal: 7.1:1. White on teal is under 3:1. */
+  color: #03202e;
 }
 
 .btn-primary:hover {
-  background: #d14c00;
+  background: #4cc9e0;
 }
 
 .btn-ghost {
@@ -272,7 +273,7 @@ a {
 
 .chip.active {
   background: var(--color-accent-soft);
-  border-color: rgb(232 85 0 / 0.4);
+  border-color: rgb(34 184 212 / 0.4);
   color: var(--color-text);
 }
 
@@ -378,7 +379,7 @@ a {
   place-items: center;
   padding: 2rem;
   background:
-    radial-gradient(ellipse at 20% 10%, rgb(232 85 0 / 0.18), transparent 45%),
+    radial-gradient(ellipse at 20% 10%, rgb(34 184 212 / 0.18), transparent 45%),
     radial-gradient(ellipse at 80% 90%, rgb(125 160 190 / 0.12), transparent 40%),
     var(--color-bg);
 }

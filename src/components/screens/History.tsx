@@ -166,7 +166,7 @@ export function HistoryScreen({ useCelsius, canClaims }: Props) {
             </button>
             <button
               class="btn btn-ghost"
-              onClick={() => void openExternal("https://thermaltrace.dev/dashboard/history")}
+              onClick={() => void openExternal("https://probeharbor.dev/dashboard/history")}
             >
               Open web history
             </button>

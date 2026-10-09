@@ -1,12 +1,12 @@
-# ThermalTrace Desktop
+# ProbeHarbor Desktop
 
-Native Windows, macOS, and Linux companion for [thermaltrace.dev](https://thermaltrace.dev).
+Native Windows, macOS, and Linux companion for [probeharbor.dev](https://probeharbor.dev).
 
-The desktop **does not** collect sensor data — it signs in with your ThermalTrace account and loads live readings from the existing HTTPS API (same contract as the [Android app](https://github.com/doodersrage/thermaltrace-android)).
+The desktop **does not** collect sensor data — it signs in with your ProbeHarbor account and loads live readings from the existing HTTPS API (same contract as the [Android app](https://github.com/doodersrage/probeharbor-android)).
 
-**Not Bay Buddy.** [Bay Buddy](https://github.com/doodersrage/thermaltrace-bay-buddy) is a glanceable freeze/flood mood companion for one space. This app is the full dashboard client: Home, History, Alerts, Devices, Household, Share, Account, and Portfolio.
+**Not Bay Buddy.** [Bay Buddy](https://github.com/doodersrage/probeharbor-bay-buddy) is a glanceable freeze/flood mood companion for one space. This app is the full dashboard client: Home, History, Alerts, Devices, Household, Share, Account, and Portfolio.
 
-On the web, live probe cards live at [`/dashboard/live`](https://thermaltrace.dev/dashboard/live); Overview Status/Insights stay at [`/dashboard`](https://thermaltrace.dev/dashboard). Desktop **Home** maps to Live-style readings (same HTTPS APIs as Android); it does not reimplement web Overview Insights.
+On the web, live probe cards live at [`/dashboard/live`](https://probeharbor.dev/dashboard/live); Overview Status/Insights stay at [`/dashboard`](https://probeharbor.dev/dashboard). Desktop **Home** maps to Live-style readings (same HTTPS APIs as Android); it does not reimplement web Overview Insights.
 
 ## Stack
 
@@ -48,14 +48,14 @@ On NVIDIA + Wayland, WebKit can abort with `Could not create GBM EGL display`. T
 ## Connect flow
 
 1. Click **Connect with Google / GitHub / email**
-2. Sign in on thermaltrace.dev in your browser (including MFA if enabled)
+2. Sign in on probeharbor.dev in your browser (including MFA if enabled)
 3. The browser returns to a localhost handoff the app is listening on
 4. Dashboard screens load against your account
 
 ## Out of scope (for now)
 
 - Admin / ops screens
-- In-app billing (opens thermaltrace.dev)
+- In-app billing (opens probeharbor.dev)
 - Claim-puck USB (stays in Bay Buddy)
 - Background daemon when the app is fully quit (notifications poll while open)
 
@@ -78,4 +78,4 @@ git push origin v0.1.0
 
 ## License
 
-MIT — companion to the ThermalTrace project.
+MIT — companion to the ProbeHarbor project.

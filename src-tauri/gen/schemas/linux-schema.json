@@ -345,22 +345,22 @@
       "description": "Permission identifier",
       "oneOf": [
         {
-          "description": "Authenticated form POST to thermaltrace.dev dashboard APIs",
+          "description": "Authenticated form POST to probeharbor.dev dashboard APIs",
           "type": "string",
           "const": "allow-api-form-post",
-          "markdownDescription": "Authenticated form POST to thermaltrace.dev dashboard APIs"
+          "markdownDescription": "Authenticated form POST to probeharbor.dev dashboard APIs"
         },
         {
-          "description": "Authenticated JSON API requests to thermaltrace.dev",
+          "description": "Authenticated JSON API requests to probeharbor.dev",
           "type": "string",
           "const": "allow-api-request",
-          "markdownDescription": "Authenticated JSON API requests to thermaltrace.dev"
+          "markdownDescription": "Authenticated JSON API requests to probeharbor.dev"
         },
         {
-          "description": "Clear stored ThermalTrace companion session",
+          "description": "Clear stored ProbeHarbor companion session",
           "type": "string",
           "const": "allow-disconnect-companion",
-          "markdownDescription": "Clear stored ThermalTrace companion session"
+          "markdownDescription": "Clear stored ProbeHarbor companion session"
         },
         {
           "description": "Check whether a companion session is stored",
@@ -381,10 +381,10 @@
           "markdownDescription": "Toggle fullscreen kiosk / shop mode"
         },
         {
-          "description": "Start ThermalTrace companion OAuth via localhost loopback",
+          "description": "Start ProbeHarbor companion OAuth via localhost loopback",
           "type": "string",
           "const": "allow-start-companion-login",
-          "markdownDescription": "Start ThermalTrace companion OAuth via localhost loopback"
+          "markdownDescription": "Start ProbeHarbor companion OAuth via localhost loopback"
         },
         {
           "description": "Default core plugins set.\n#### This default permission set includes:\n\n- `core:path:default`\n- `core:event:default`\n- `core:window:default`\n- `core:webview:default`\n- `core:app:default`\n- `core:image:default`\n- `core:resources:default`\n- `core:menu:default`\n- `core:tray:default`",

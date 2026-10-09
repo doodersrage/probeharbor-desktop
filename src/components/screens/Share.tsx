@@ -46,7 +46,7 @@ export function ShareScreen({ canShare }: Props) {
         </p>
         <button
           class="btn btn-primary"
-          onClick={() => void openExternal("https://thermaltrace.dev/dashboard/plans")}
+          onClick={() => void openExternal("https://probeharbor.dev/dashboard/plans")}
         >
           Open plans
         </button>
@@ -94,7 +94,7 @@ export function ShareScreen({ canShare }: Props) {
                 const token = await createShareLink(label, scope, days);
                 setMsg(
                   token
-                    ? `Created — https://thermaltrace.dev/share/${token}`
+                    ? `Created — https://probeharbor.dev/share/${token}`
                     : "Share link created",
                 );
                 await load();
@@ -132,7 +132,7 @@ export function ShareScreen({ canShare }: Props) {
                     <button
                       class="btn btn-ghost"
                       onClick={() =>
-                        void openExternal(`https://thermaltrace.dev/share/${l.token}`)
+                        void openExternal(`https://probeharbor.dev/share/${l.token}`)
                       }
                     >
                       Open

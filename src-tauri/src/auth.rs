@@ -10,7 +10,7 @@ use tauri::{AppHandle, Emitter, Manager};
 
 use crate::open_url::open_https_url;
 
-const API_BASE: &str = "https://thermaltrace.dev";
+const API_BASE: &str = "https://probeharbor.dev";
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SessionTokens {
@@ -200,7 +200,7 @@ fn wait_for_loopback_exchange(listener: TcpListener) -> Result<String, String> {
         )
     })?;
 
-    let body = "<!doctype html><html><body style=\"font-family:system-ui;background:#090b0f;color:#f3f6fb;padding:2rem\"><h1>ThermalTrace connected</h1><p>You can close this tab and return to the desktop app.</p></body></html>";
+    let body = "<!doctype html><html><body style=\"font-family:system-ui;background:#090b0f;color:#f3f6fb;padding:2rem\"><h1>ProbeHarbor connected</h1><p>You can close this tab and return to the desktop app.</p></body></html>";
     let response = format!(
         "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{}",
         body.len(),
@@ -242,7 +242,7 @@ async fn exchange_token(exchange: &str) -> Result<SessionTokens, String> {
     })
 }
 
-/// Open ThermalTrace companion sign-in and wait for the loopback handoff.
+/// Open ProbeHarbor companion sign-in and wait for the loopback handoff.
 #[tauri::command]
 pub async fn start_companion_login(
     app: AppHandle,
@@ -375,7 +375,7 @@ async fn send_authed(
 
     if status == 401 && body.contains("MFA required") {
         return Err(
-            "MFA required — finish MFA in the browser on thermaltrace.dev, then connect again"
+            "MFA required — finish MFA in the browser on probeharbor.dev, then connect again"
                 .into(),
         );
     }

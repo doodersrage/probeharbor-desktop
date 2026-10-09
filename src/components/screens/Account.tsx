@@ -76,7 +76,7 @@ export function AccountScreen({ onPrefs, onSignedOut, canPush = false }: Props) 
         <div class="row">
           <button
             class="btn btn-ghost"
-            onClick={() => void openExternal("https://thermaltrace.dev/dashboard/plans")}
+            onClick={() => void openExternal("https://probeharbor.dev/dashboard/plans")}
           >
             Manage billing on web
           </button>
@@ -123,7 +123,7 @@ export function AccountScreen({ onPrefs, onSignedOut, canPush = false }: Props) 
             </p>
             <button
               class="btn btn-primary"
-              onClick={() => void openExternal("https://thermaltrace.dev/dashboard/plans")}
+              onClick={() => void openExternal("https://probeharbor.dev/dashboard/plans")}
             >
               View plans
             </button>

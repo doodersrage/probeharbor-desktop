@@ -96,7 +96,7 @@ export function App() {
   }
 
   if (booting) {
-    return <div class="loading">Starting ThermalTrace…</div>;
+    return <div class="loading">Starting ProbeHarbor…</div>;
   }
 
   if (!connected) {

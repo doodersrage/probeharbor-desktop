@@ -126,7 +126,7 @@ export function HomeScreen({ useCelsius }: Props) {
             {ttf?.hours != null ? `${ttf.hours.toFixed(1)} h` : "—"}
           </div>
           <p class="card-sub" style={{ marginBottom: 0 }}>
-            {ttf?.hits_at_label || ttf?.message || "From thermaltrace.dev model"}
+            {ttf?.hits_at_label || ttf?.message || "From probeharbor.dev model"}
           </p>
         </div>
         <div class="card">
@@ -193,7 +193,7 @@ export function HomeScreen({ useCelsius }: Props) {
 
       <div class="card">
         <div class="card-title">Live sensors</div>
-        <p class="card-sub">Phone and desktop are companions — probes post to thermaltrace.dev.</p>
+        <p class="card-sub">Phone and desktop are companions — probes post to probeharbor.dev.</p>
         {sensors.length === 0 ? (
           <div class="empty">No sensors yet. Connect a probe or demo feed on the web.</div>
         ) : (

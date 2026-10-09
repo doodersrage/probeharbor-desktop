@@ -26,13 +26,13 @@ export function ConnectScreen({ onConnected }: Props) {
     <div class="connect-screen">
       <div class="connect-card">
         <div class="brand" style={{ padding: 0 }}>
-          <span class="brand-thermal">Thermal</span>
-          <span class="brand-trace">Trace</span>
+          <span class="brand-thermal">Probe</span>
+          <span class="brand-trace">Harbor</span>
         </div>
         <h1>Desktop companion</h1>
         <p>
-          Sign in with your ThermalTrace account. The desktop is not a sensor —
-          probes keep posting to thermaltrace.dev.
+          Sign in with your ProbeHarbor account. The desktop is not a sensor —
+          probes keep posting to probeharbor.dev.
         </p>
         {error && <div class="error-banner" style={{ marginBottom: "1rem", textAlign: "left" }}>{error}</div>}
         <div class="connect-actions">
